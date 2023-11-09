@@ -3,7 +3,7 @@ terraform {
     organization = "challenge-fiap"
 
     workspaces {
-      name = "challenge-terraform-github-actions"
+      name = "challenge-eks-github-actions"
     }
   }
 }
