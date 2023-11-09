@@ -1,3 +1,13 @@
+terraform {
+  cloud {
+    organization = "challenge-fiap"
+
+    workspaces {
+      name = "challenge-terraform-github-actions"
+    }
+  }
+}
+
 module "vpc" {
   source   = "./modules/vpc"
   app_name = "challenge-fiap"
@@ -7,7 +17,7 @@ module "vpc" {
 module "eks" {
   source                 = "./modules/eks"
   eks_cluster_name       = "challenge-eks-cluster"
-  eks_cluster_role_arn   = "arn:aws:iam::123456789012:role/eks-role" # Substitua pelo ARN do papel IAM correto
+  eks_cluster_role_arn   = "arn:aws:iam::123456789012:role/eks-role"
   subnet_ids             = [module.vpc.subnet_publica_id_a, module.vpc.subnet_publica_id_b]
   vpc_security_group_ids = [module.security_group_eks.id]
 }
